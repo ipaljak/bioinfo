@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cstdio>
 #include <iostream>
+#include <set>
 #include <string>
 #include <map>
 #include <vector>
@@ -10,24 +11,42 @@ using namespace std;
 #define TRACE(x) cerr << #x << " " << x << endl
 #define _ << " " <<
 
-struct edge;
+struct node;
+
+struct edge {
+
+  int src_loc, quality;
+  string s;
+      
+  node* dest;
+
+  edge() {
+    quality = 0;
+    dest = NULL;
+  }
+
+  edge(int _sl, int _qual, string _s) {
+    src_loc = _sl;
+    quality = _qual;
+    s = _s;
+  }
+
+};
 
 struct node {
 
-  int loc, quality;
+  int loc;
   string kmer;
-  vector <pair<string, node*>> edges;
+  vector <edge*> edges;
 
   void trace_dfs() {
-    cout << "Backbone_id; " << loc << ", quality: " << quality << ", node_str: " << kmer << endl;
-    for (auto &e : edges) {
-      cout << "edge from id: " << loc << " with edge_str: " << e.first << endl;
-      e.second->trace_dfs();
+    cout << "Backbone_id; " << loc << ", node_str: " << kmer << endl;
+    for (auto e : edges) {
+      assert(e != NULL);
+      cout << "edge from id: " << e->src_loc << " with edge_str: " << e->s 
+           << " and quality: " << e->quality << endl;
+      e->dest->trace_dfs();
     }
-  }
-
-  node () {
-    quality = 0;
   }
 
 };
@@ -39,7 +58,7 @@ string backbone, read, read_quality;
 node *kmer_graph;
 
 map <pair<int, string>, node*> V;
-map <pair<int, string>, node*> E;
+map <pair<int, string>, edge*> E;
 
 void build_backbone(node *root) {
   int it = 0;
@@ -55,13 +74,15 @@ void build_backbone(node *root) {
       break;
 
     string edge_str = backbone.substr(it, g);
+    edge* e = new edge(root->loc, 1, edge_str);
+
     it += g - k;
 
-    node *nxt = new node();
-    root->edges.emplace_back(edge_str, nxt);
-    E[make_pair(root->loc, edge_str)] = nxt;
+    e->dest = new node();
+    root->edges.push_back(e);
+    E[make_pair(root->loc, edge_str)] = e;
 
-    root = nxt;
+    root = e->dest;
   }
 }
 
@@ -75,8 +96,41 @@ void add_path(int offset) {
   node *curr = V[make_pair(offset, kmer)];
 
   int it = k;
-  while (it < read.size()) {
-    
+  while (it + g <= read.size()) {
+
+    TRACE(it);
+
+    string edge_str = read.substr(it, g);
+    string next_kmer = edge_str.substr(g - k, k);
+
+    node* nxt = NULL;      
+    edge* link = NULL;
+
+    if (V.find(make_pair(it + g - k, next_kmer)) != V.end()) 
+      nxt = V[make_pair(it + g - k, next_kmer)];
+
+    if (nxt == NULL) {
+      nxt = new node();
+      nxt->loc = curr->loc + g;
+      nxt->kmer = next_kmer;
+      V[make_pair(nxt->loc, nxt->kmer)] = nxt;
+    }
+
+    for (auto e : curr->edges)
+      if (e->s == edge_str)
+        link = e;
+
+    if (link == NULL) {
+      link = new edge(curr->loc, 0, edge_str);
+      link->dest = nxt;
+      curr->edges.push_back(link);
+    }
+      
+    link->quality++;
+
+    curr = nxt;
+    it += g;
+      
   }
 
 }
