@@ -44,10 +44,10 @@ struct node {
   vector <edge*> edges;
 
   void trace_dfs() {
-    cout << "Backbone_id; " << loc << ", node_str: " << kmer << endl;
+    cerr << "Backbone_id; " << loc << ", node_str: " << kmer << endl;
     for (auto e : edges) {
       assert(e != NULL);
-      cout << "edge from id: " << e->src_loc << " with edge_str: " << e->s 
+      cerr << "edge from id: " << e->src_loc << " with edge_str: " << e->s 
            << " and quality: " << e->quality << endl;
       if (e->dest != NULL)
         e->dest->trace_dfs();
@@ -117,7 +117,7 @@ void add_path(int offset) {
     curr = V[make_pair(offset, kmer)];
   }
 
-  cerr << "Building path with offset = " << offset << endl;
+//  cerr << "Building path with offset = " << offset << endl;
 
   int it = k + read_offset;
   while (it + g <= read.size()) {
@@ -155,7 +155,7 @@ void add_path(int offset) {
       
   }
 
-  cerr << "Path with offset: " << offset << " built successfully!" << endl;
+//  cerr << "Path with offset: " << offset << " built successfully!" << endl;
 
 }
 
@@ -186,7 +186,7 @@ void reconstruct_genome(node *root) {
 
   }
 
-  cout << "Found path with quality = " << leaf->score << endl;
+//  cerr << "Found path with quality = " << leaf->score << endl;
 
   stack <string> S;
   while (dad.find(leaf) != dad.end()) {
@@ -214,7 +214,7 @@ int main(void) {
   cin >> backbone;
   build_backbone(kmer_graph);
   
-  cerr << "Backbone built successfully!" << endl;  
+//  cerr << "Backbone built successfully!" << endl;  
 
   while (cin >> read) {
     int offset;
@@ -224,8 +224,8 @@ int main(void) {
     add_path(offset); 
   }
 
+  cout << "> final" << endl;
   reconstruct_genome(kmer_graph);
-  TRACE(skipped);
 
   return 0;
 
