@@ -16,13 +16,13 @@
 
 \tableofcontents
 
-\input{opis}
+\input{Uvod}
 
 %\input{Radovi}
 
 %\input{NLP}
 
-\input{zakljucak}
+%\input{Zakljucak}
 
 
 \bibliography{literatura}

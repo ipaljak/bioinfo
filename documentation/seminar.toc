@@ -1,3 +1,7 @@
 \select@language {croatian}
-\contentsline {chapter}{\numberline {1}Literatura}{i}
-\contentsline {chapter}{\numberline {2}Sa\IeC {\v z}etak}{1}
+\contentsline {chapter}{\numberline {1}Algoritam Sparc}{1}
+\contentsline {section}{\numberline {1.1}Ulaz u algoritam}{1}
+\contentsline {section}{\numberline {1.2}Opis algoritma}{2}
+\contentsline {chapter}{\numberline {2}Zaklju\IeC {\v c}ak}{4}
+\contentsline {chapter}{\numberline {3}Literatura}{5}
+\contentsline {chapter}{\numberline {4}Sa\IeC {\v z}etak}{6}
