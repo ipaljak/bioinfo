@@ -163,7 +163,9 @@ void add_path(int offset) {
 
 }
 
-void reconstruct_genome(node *root) {
+string reconstruct_genome(node *root) {
+
+  string ret;
 
   node *leaf = new node();
 
@@ -200,13 +202,19 @@ void reconstruct_genome(node *root) {
     leaf = p.first;
   }
   
-  cout << leaf->kmer;
+  for (char c : leaf->kmer)
+    if (c != '-')
+      ret.push_back(c);
+
   while (!S.empty()) {
     cout << S.top();
+    for (char c : S.top())
+      if (c != '-')
+        ret.push_back(c);
     S.pop();
   }
 
-  cout << endl;
+  return ret;
 
 }
 
@@ -229,7 +237,7 @@ int main(void) {
   }
 
   cout << ">final" << endl;
-  reconstruct_genome(kmer_graph);
+  cout << reconstruct_genome(kmer_graph) << endl;
 
   return 0;
 
