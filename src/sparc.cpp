@@ -124,6 +124,10 @@ void add_path(int offset) {
 
     string edge_str = read.substr(it, g);
     string next_kmer = edge_str.substr(g - k, k);
+    
+    int edge_quality = 0;
+    for (int i = 0; i < g; ++i)
+      edge_quality += (int) read_quality[it + i];
 
     node* nxt = NULL;      
     edge* link = NULL;
@@ -148,7 +152,7 @@ void add_path(int offset) {
       curr->edges.push_back(link);
     }
       
-    link->quality++;
+    link->quality += edge_quality;
 
     curr = nxt;
     it += g;
