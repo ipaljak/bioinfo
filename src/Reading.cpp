@@ -70,10 +70,19 @@ Sam read_mapping(ifstream &in){
 
 int main(int argc, char ** argv){
 
+  if (argc != 4){
+    cerr << "Usage:\n\t./reading layout.fa mappings.sam output" << endl;;
+    return 1;
+  }
+
+  string backbone_file = argv[1];
+  string mappings_file = argv[2];
+  string output_file   = argv[3];
+  
   // open files for reading
-  string backbone_file = "../data/lambda_layout.fasta";
-  string mappings_file = "../data/lambda_overlaps.sam";
-  string output_file   = "../data/nas.format";
+  //string backbone_file = "../data/lambda_layout.fasta";
+  //string mappings_file = "../data/lambda_mappings.sam";
+  //string output_file   = "../data/nas.format";
 
   ofstream out(output_file.c_str(), ios::out);
   ifstream in(mappings_file.c_str(), ios::in);

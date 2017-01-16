@@ -224,7 +224,7 @@ int main(void) {
     add_path(offset); 
   }
 
-  cout << "> final" << endl;
+  cout << ">final" << endl;
   reconstruct_genome(kmer_graph);
 
   return 0;

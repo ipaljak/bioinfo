@@ -3,8 +3,11 @@
 # Script that runs everything from scratch
 #
 
-echo "Generating overlaps from reads (MHAP)"
+echo "Generating mappings from reads (.sam)"
 
-# Overlap all reads from a given FASTA/FASTQ file and report overlaps in MHAP format (fast):  
-./graphmap/bin/Linux-x64/graphmap align -r data/lambda_layout.fasta -d data/lambda_reads.fastq -o data/lambda_overlaps.sam
+# align
+#./graphmap/bin/Linux-x64/graphmap align -r data/lambda_layout.fasta -d data/lambda_reads.fastq -o data/lambda_mappings.sam
 
+./graphmap/bin/Linux-x64/graphmap align -r data/ecoli_layout.fasta -d data/ecoli_reads.fastq -o data/ecoli_mappings.sam
+
+./src/reading ../data/lambda_layout.fasta ../data/lambda_mappings.sam ../data/nas.format2
