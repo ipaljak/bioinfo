@@ -2,14 +2,18 @@
 #include <cstdio>
 #include <iostream>
 #include <set>
+#include <stack>
 #include <string>
 #include <map>
+#include <queue>
 #include <vector>
 
 using namespace std;
 
 #define TRACE(x) cerr << #x << " " << x << endl
 #define _ << " " <<
+
+const int INF = (int) 1e9;
 
 struct node;
 
@@ -35,7 +39,7 @@ struct edge {
 
 struct node {
 
-  int loc;
+  int loc, score;
   string kmer;
   vector <edge*> edges;
 
@@ -45,13 +49,19 @@ struct node {
       assert(e != NULL);
       cout << "edge from id: " << e->src_loc << " with edge_str: " << e->s 
            << " and quality: " << e->quality << endl;
-      e->dest->trace_dfs();
+      if (e->dest != NULL)
+        e->dest->trace_dfs();
     }
+  }
+
+  node () {
+    score = -1;
   }
 
 };
 
 int k = 2, g = 3;
+int skipped = 0;
 
 string backbone, read, read_quality;
 
@@ -59,6 +69,8 @@ node *kmer_graph;
 
 map <pair<int, string>, node*> V;
 map <pair<int, string>, edge*> E;
+
+map <node*, pair<node*, edge*>> dad;
 
 void build_backbone(node *root) {
   int it = 0;
@@ -88,17 +100,30 @@ void build_backbone(node *root) {
 
 void add_path(int offset) {
 
+  node *curr;
   string kmer = read.substr(0, k);
 
-  assert(V.find(make_pair(offset, kmer)) != V.end());
-  assert(offset + read.size() <= backbone.size());
+  if (offset % g != 0) {
+    ++skipped;
+    cerr << "Skipping path with offset = " << offset << endl;
+    return;
+  }
 
-  node *curr = V[make_pair(offset, kmer)];
+  if (V.find(make_pair(offset, kmer)) == V.end()) {
+    curr = new node();
+    curr->loc = offset;
+    curr->kmer = kmer;
+  } else {
+    curr = V[make_pair(offset, kmer)];
+  }
+
+//  assert(V.find(make_pair(offset, kmer)) != V.end());
+//  assert(offset + read.size() <= backbone.size());
+
+  cerr << "Building path with offset = " << offset << endl;
 
   int it = k;
   while (it + g <= read.size()) {
-
-    TRACE(it);
 
     string edge_str = read.substr(it, g);
     string next_kmer = edge_str.substr(g - k, k);
@@ -106,8 +131,8 @@ void add_path(int offset) {
     node* nxt = NULL;      
     edge* link = NULL;
 
-    if (V.find(make_pair(it + g - k, next_kmer)) != V.end()) 
-      nxt = V[make_pair(it + g - k, next_kmer)];
+    if (V.find(make_pair(curr->loc + g - k, next_kmer)) != V.end()) 
+      nxt = V[make_pair(curr->loc + g - k, next_kmer)];
 
     if (nxt == NULL) {
       nxt = new node();
@@ -133,6 +158,55 @@ void add_path(int offset) {
       
   }
 
+  cerr << "Path with offset: " << offset << " built successfully!" << endl;
+
+}
+
+void reconstruct_genome(node *root) {
+
+  node *leaf = new node();
+
+  queue <node*> Q;
+  Q.push(root);
+  root->score = 0;
+  
+  while (!Q.empty()) {
+
+    node *curr = Q.front();
+    Q.pop();
+    
+    if (curr->score > leaf->score) 
+      leaf = curr;
+
+    for (auto e : curr->edges) {
+      if (e->dest->score == -1)
+        Q.push(e->dest);
+      if (e->dest->score < curr->score + e->quality) {
+        e->dest->score = curr->score + e->quality;
+        dad[e->dest] = make_pair(curr, e);
+      }
+    }
+
+  }
+
+  cout << "Found path with quality = " << leaf->score << endl;
+
+  stack <string> S;
+  while (dad.find(leaf) != dad.end()) {
+    auto p = dad[leaf];
+    S.push(p.second->s);
+    assert(p.first->loc < leaf->loc);
+    leaf = p.first;
+  }
+  
+  cout << leaf->kmer;
+  while (!S.empty()) {
+    cout << S.top();
+    S.pop();
+  }
+
+  cout << endl;
+
 }
 
 int main(void) {
@@ -142,19 +216,19 @@ int main(void) {
 
   cin >> backbone;
   build_backbone(kmer_graph);
+  
+  cerr << "Backbone built successfully!" << endl;  
 
-  int read_cnt;
-  cin >> read_cnt;
-
-  while (read_cnt --> 0) {
+  while (cin >> read) {
     int offset;
-    cin >> read;
     cin >> read_quality;
     cin >> offset; 
+    --offset;
     add_path(offset); 
   }
 
-  kmer_graph->trace_dfs();
+  reconstruct_genome(kmer_graph);
+  TRACE(skipped);
 
   return 0;
 
