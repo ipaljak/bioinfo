@@ -100,14 +100,14 @@ void build_backbone(node *root) {
 
 void add_path(int offset) {
 
-  node *curr;
-  string kmer = read.substr(0, k);
-
-  if (offset % g != 0) {
-    ++skipped;
-    cerr << "Skipping path with offset = " << offset << endl;
-    return;
+  int read_offset = 0;
+  while (offset % g != 0) {
+    ++offset;
+    ++read_offset;
   }
+
+  node *curr;
+  string kmer = read.substr(read_offset, k);
 
   if (V.find(make_pair(offset, kmer)) == V.end()) {
     curr = new node();
@@ -117,12 +117,9 @@ void add_path(int offset) {
     curr = V[make_pair(offset, kmer)];
   }
 
-//  assert(V.find(make_pair(offset, kmer)) != V.end());
-//  assert(offset + read.size() <= backbone.size());
-
   cerr << "Building path with offset = " << offset << endl;
 
-  int it = k;
+  int it = k + read_offset;
   while (it + g <= read.size()) {
 
     string edge_str = read.substr(it, g);
