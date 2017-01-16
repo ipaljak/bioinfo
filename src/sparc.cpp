@@ -90,7 +90,8 @@ void build_backbone(node *root) {
 
     it += g - k;
 
-    e->dest = new node();
+    e->dest = new node(); 
+    e->quality = 1;
     root->edges.push_back(e);
     E[make_pair(root->loc, edge_str)] = e;
 
@@ -113,6 +114,7 @@ void add_path(int offset) {
     curr = new node();
     curr->loc = offset;
     curr->kmer = kmer;
+    V[make_pair(offset, kmer)] = curr;
   } else {
     curr = V[make_pair(offset, kmer)];
   }
@@ -132,8 +134,8 @@ void add_path(int offset) {
     node* nxt = NULL;      
     edge* link = NULL;
 
-    if (V.find(make_pair(curr->loc + g - k, next_kmer)) != V.end()) 
-      nxt = V[make_pair(curr->loc + g - k, next_kmer)];
+    if (V.find(make_pair(curr->loc + g, next_kmer)) != V.end()) 
+      nxt = V[make_pair(curr->loc + g, next_kmer)];
 
     if (nxt == NULL) {
       nxt = new node();
@@ -145,6 +147,11 @@ void add_path(int offset) {
     for (auto e : curr->edges)
       if (e->s == edge_str)
         link = e;
+
+//    if (link != NULL) {
+//      TRACE(link->s _ nxt->kmer _ link->dest->kmer _ link->dest _ nxt _ link->dest->loc _ nxt->loc);
+//      assert(link->dest == nxt);
+//    }
 
     if (link == NULL) {
       link = new edge(curr->loc, 0, edge_str);
@@ -202,15 +209,9 @@ string reconstruct_genome(node *root) {
     leaf = p.first;
   }
   
-  for (char c : leaf->kmer)
-    if (c != '-')
-      ret.push_back(c);
-
+  ret += leaf->kmer;
   while (!S.empty()) {
-    cout << S.top();
-    for (char c : S.top())
-      if (c != '-')
-        ret.push_back(c);
+    ret += S.top();
     S.pop();
   }
 
@@ -226,18 +227,34 @@ int main(void) {
   cin >> backbone;
   build_backbone(kmer_graph);
   
+  TRACE(V.size());
+
 //  cerr << "Backbone built successfully!" << endl;  
 
+  int cnt = 0;
   while (cin >> read) {
     int offset;
     cin >> read_quality;
     cin >> offset; 
     --offset;
     add_path(offset); 
+    ++cnt;
+//    for (int i = 0; i < read.size(); ++i)
+//      cerr << read[i] << " " << backbone[i + offset] << endl;
   }
 
+  TRACE(V.size());
+  TRACE(cnt);
   cout << ">final" << endl;
-  cout << reconstruct_genome(kmer_graph) << endl;
+  
+  string ret = reconstruct_genome(kmer_graph);
+  for (int i = 0; i < ret.size(); ++i)
+    if (ret[i] == '-')
+      cout << backbone[i];
+    else
+      cout << ret[i];
+
+  cout << endl;
 
   return 0;
 

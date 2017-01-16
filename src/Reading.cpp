@@ -22,21 +22,26 @@ using namespace std;
 //};
 //
 
-string cigar2align(string backbone, int backbone_pos, string cigar, string seq){
+pair<string, string> cigar2align(string backbone, int backbone_pos, string cigar, string seq, string qual){
 
   string retstr = "";
+  string retqual = "";
+
   backbone_pos--; // position is 1 indexed in sam
 
   int pos = 0;
   const char *cig = cigar.c_str();
-  while(*cig != 0){
+  while(*cig != '\0'){
     char *c;
     int n = strtol(cig, &c, 10);
+    
+//    cerr << n << " " << *c << endl;
 
     switch(*c){
       case 'M':{
         while (n > 0){
-          retstr += seq[pos++];
+          retstr += seq[pos];
+          retqual += qual[pos++];
           --n;
         }
         break;
@@ -44,11 +49,17 @@ string cigar2align(string backbone, int backbone_pos, string cigar, string seq){
       case 'D':{
         while(n > 0){
           retstr += '-';
+          retqual += (char) 1;
           --n;
         }
         break;
         }
       case 'I':{
+//        while (n > 0){
+//          retstr += seq[pos];
+//          retqual += qual[pos++];
+//          --n;
+//        }
         pos += n;
         break;
         }
@@ -64,7 +75,10 @@ string cigar2align(string backbone, int backbone_pos, string cigar, string seq){
     cig = c + 1;
   }
 
-  return retstr;
+  cerr << pos << " " << seq.size() << endl;
+  cerr << retstr.size() << endl;
+
+  return make_pair(retstr, retqual);
 }
 
 string read_backbone(string backbone_file){
@@ -150,7 +164,7 @@ int main(int argc, char ** argv){
 
   int i;
   Sam sam;
-  string aligned_read;
+  string aligned_read, aligned_qual;
   for (i = 1; ; ++i){
     if (!in)
       break;
@@ -160,12 +174,15 @@ int main(int argc, char ** argv){
     if (sam.flag != 0)
       continue;
 
-    aligned_read = cigar2align(backbone, sam.pos, sam.cigar, sam.read);
+    pair<string, string> p = cigar2align(backbone, sam.pos, sam.cigar, sam.read, sam.quality);
+
+    aligned_read = p.first;
+    aligned_qual = p.second;
 
     if (sam.read == "")
       continue;
     out << aligned_read << endl;
-    out << sam.quality << endl;
+    out << aligned_qual << endl;
     out << sam.pos << endl;
 
 
