@@ -159,7 +159,7 @@ void add_path(int offset) {
       curr->edges.push_back(link);
     }
       
-    link->quality += edge_quality;
+    link->quality += 5; //edge_quality;
 
     curr = nxt;
     it += g;

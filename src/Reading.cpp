@@ -75,8 +75,8 @@ pair<string, string> cigar2align(string backbone, int backbone_pos, string cigar
     cig = c + 1;
   }
 
-  cerr << pos << " " << seq.size() << endl;
-  cerr << retstr.size() << endl;
+  //cerr << pos << " " << seq.size() << endl;
+  //cerr << retstr.size() << endl;
 
   return make_pair(retstr, retqual);
 }
@@ -135,16 +135,14 @@ int main(int argc, char ** argv){
   string output_file   = "../data/lambda_nas.format";
   if (argc != 4){
     cerr << "Usage:\n\t./reading layout.fa mappings.sam output" << endl;;
-    string backbone_file = "../data/lambda_layout.fasta";
-    string mappings_file = "../data/lambda_mappings.sam";
-    string output_file   = "../data/nas.format";
   }
   else {
-    string backbone_file = argv[1];
-    string mappings_file = argv[2];
-    string output_file   = argv[3];
+    backbone_file = argv[1];
+    mappings_file = argv[2];
+    output_file   = argv[3];
   }
 
+  cout << "$$$$$$$$" << output_file << endl;
   
   // open files for reading
 
