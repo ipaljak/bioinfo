@@ -1,10 +1,54 @@
 \chapter{Evaluacija}
+\label{sec:eval}
 
-\secton{DnaDiff iz Mummer paketa}
+Testni podatci dobiveni su na kolegiju\footnote{fer.unizg.hr/predmet/bio}.
+Evaluacija je obavljena na genomima dviju bakterija: escherichia coli te fuge lambda.
+Za svaku bakteriju dostupna su očitanja, genom nakon faze razmještanja te referentni genom s kojim uspoređujemo performanse svoga algoritma.
+Cilj je bio generirati genom konsenzus fazom kako bi njegovo preklapanje s referentnim bilo što veće od preklapanja genoma nakon faze razmještanja s referentnim.
 
-Evaluacija rješenja obavljena je korištenjem alata DnaDiff iz Mummer paketa \citep{kurtz2004versatile}.
+\section{DnaDiff iz MUMmer paketa}
+
+\emph{MUMmer} \citep{kurtz2004versatile} je široko korišten paket otvorenog koda \engl{Open Source} za razne podzadatke bioinformatike.
+Implementira razne module, a mi smo koristili \emph{dnadiff} -- modul dizajniran za evaluaciju slijedova dvaju vrlo sličnih genoma.
+Pruža detaljne informacije o razlikama između dvaju genoma, ali generira i high-level datoteku s kvantificiranim razlikama.
+Svoj algoritam vrednovali smo prema \emph{AvgIdentity} polju u navedenoj datoteci (out.report).
+Broj predstavlja prosječno poklapanje referentnog genoma s našim.
+Postoje podatci za 1-na-1 mapiranje (gdje su ponavljanja zanemarena) te M-na-M mapiranje.
+Uglavnom su oba broja jednaka, pa stoga nije posvećeno previše pažnje na odabir određenoga.
+U svim rezultatima u nastavku nalazi se \emph{AvgIdentity} polje iz 1-na-1 mapiranja.
 
 \section{Usporedba vlastitog rješenja s referentnim radom}
 
-Lošije je.
+Tablica \ref{tbl:usporedba}.
+
+\begin{table}[]
+\centering
+\caption{Usporedba vlastitog rješenja (SpaCRO) s sekvencom iz faze razmještanja (default) i referentnim radom (Sparc).}
+\label{tbl:usporedba}
+\begin{tabular}{l|ll}
+  & \multicolumn{1}{l}{lambda} & ecoli \\ \hline
+  default & 86.16                       & 88.57 \\
+  Sparc   & \textbf{95.41}              & \textbf{98.17} \\
+  SpaCRO  & 87.93                       & 90.73
+\end{tabular}
+\end{table}
+
+
+
+\section{Memorija i vrijeme izvođenja}
+
+Kao dio projekta, potrebno je izmjeriti potrošnju memorije i vrijeme izvođenja našega algoritma te zadovoljiti određena ograničenja.
+Mjerenje je obavljeno pomoću alata cgmemtime\footnote{github.com/isovic/cgmemtime}, a rezultati su prikazani u tablici \ref{tbl:mem}.
+I utrošena memorija i vrijeme izvođenja zadovoljavaju zadana ograničenja.
+
+\begin{table}[]
+\centering
+\caption{Potrošnja memorije i vrijeme izvođenja našeg algoritma na testnim skupovima podataka.}
+\label{tbl:mem}
+\begin{tabular}{l|ll}
+  & lambda & ecoli \\ \hline
+  mem {[}MB{]} & 30     & 2464  \\
+  time {[}s{]} & 0.45   & 62.8 
+\end{tabular}
+\end{table}
 

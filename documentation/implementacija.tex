@@ -1,0 +1,27 @@
+\chapter{Implementacija}
+\label{sec:implementacija}
+
+\section{Organizacija koda}
+Cjelokupni algoritam implementiran je u programskom jeziku C++11.
+Implementacija je podijeljena u dva osnovna dijela.
+Prvi modul \emph{reading.cpp} učitava sve potrebne podatke (backbone i očitanja u .sam formatu) te primjenjuje CIGAR operacije na pojedina očitanja.
+Time generiramo datoteku vlastitog formata.
+U prvoj liniji zapisan je backbone, a svake sljedeće tri linije predstavljaju jedno očitanje na način:
+\begin{enumerate}
+  \item očitanje na koje su primijenjene CIGAR operacije,
+  \item kvaliteta očitanja na koju su primijenjene CIGAR operacije,
+  \item pozicija u backbone-u na koju se mapira očitanje.
+\end{enumerate}
+
+Drugi modul implementira sam algoritam Sparc.
+TODO: ljakpa
+
+\section{Kofiguracija korištenog računala}
+
+Računalo korišteno pri pokretanju cjelokupnog pipelinea ima sljedeću konfiguraciju:
+\begin{description}
+  \item [OS] Linux 14.04.1-Ubuntu x86\_64
+  \item [Procesor] Intel(R) Core(TM) i7-5820K CPU @ 3.30GHz (CPUs: 12)
+  \item [RAM] 32Gib @ 2133 MHz
+\end{description}
+

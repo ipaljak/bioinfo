@@ -16,6 +16,9 @@ cd bioinfo
 
 For complete pipeline run:
 ```
-./runall.sh
+cd src
+./eval.sh lambda
+./eval.sh ecoli
 ```
 
+This project is licensed under the terms of the MIT license.

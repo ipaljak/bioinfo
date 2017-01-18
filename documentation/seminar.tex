@@ -1,6 +1,8 @@
 \documentclass[times, utf8, seminar]{fer}
 \usepackage{booktabs}
 
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+
 \begin{document}
 
 % TODO: Navedite naslov rada.
@@ -16,11 +18,13 @@
 
 \tableofcontents
 
+\input{Uvod}
+
 \input{opis}
 
-%\input{Radovi}
+\input{implementacija}
 
-%\input{NLP}
+\input{evaluacija}
 
 \input{zakljucak}
 
@@ -29,6 +33,8 @@
 \bibliographystyle{fer}
 
 \chapter{Sažetak}
-Sažetak.
+Ovaj projekt napravljen je za kolegij Bioinformatika na FER-u.
+Implementiran je algoritam \emph{Sparc} za generiranje konsenzusa u OLC paradigmi sastavljanja genoma.
+Dobiveni su rezultati te uspoređeni s referentnim radom.
 
 \end{document}

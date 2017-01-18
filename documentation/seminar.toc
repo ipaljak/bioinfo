@@ -1,7 +1,15 @@
 \select@language {croatian}
-\contentsline {chapter}{\numberline {1}Algoritam Sparc}{1}
-\contentsline {section}{\numberline {1.1}Ulaz u algoritam}{1}
-\contentsline {section}{\numberline {1.2}Opis algoritma}{2}
-\contentsline {chapter}{\numberline {2}Zaklju\IeC {\v c}ak}{4}
-\contentsline {chapter}{\numberline {3}Literatura}{5}
-\contentsline {chapter}{\numberline {4}Sa\IeC {\v z}etak}{6}
+\contentsline {chapter}{\numberline {1}Uvod}{1}
+\contentsline {chapter}{\numberline {2}Algoritam Sparc}{2}
+\contentsline {section}{\numberline {2.1}Ulaz u algoritam}{2}
+\contentsline {section}{\numberline {2.2}Opis algoritma}{3}
+\contentsline {chapter}{\numberline {3}Implementacija}{4}
+\contentsline {section}{\numberline {3.1}Organizacija koda}{4}
+\contentsline {section}{\numberline {3.2}Kofiguracija kori\IeC {\v s}tenog ra\IeC {\v c}unala}{4}
+\contentsline {chapter}{\numberline {4}Evaluacija}{5}
+\contentsline {section}{\numberline {4.1}DnaDiff iz MUMmer paketa}{5}
+\contentsline {section}{\numberline {4.2}Usporedba vlastitog rje\IeC {\v s}enja s referentnim radom}{5}
+\contentsline {section}{\numberline {4.3}Memorija i vrijeme izvo\IeC {\dj }enja}{6}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{7}
+\contentsline {chapter}{\numberline {6}Literatura}{8}
+\contentsline {chapter}{\numberline {7}Sa\IeC {\v z}etak}{9}
