@@ -145,8 +145,6 @@ int main(int argc, char ** argv){
     output_file   = argv[3];
   }
 
-  cout << "$$$$$$$$" << output_file << endl;
-  
   // open files for reading
 
   ofstream out(output_file.c_str(), ios::out);
