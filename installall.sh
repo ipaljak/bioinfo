@@ -7,7 +7,7 @@ wget https://www.dropbox.com/s/a40dhhfchojyf0c/consenus_input.zip?dl=0
 
 unzip consenus_input.zip?dl=0
 
-mv *fasta* data
+mv *fast* data
 
 echo " *** Installing graphmap"
 git clone https://github.com/isovic/graphmap.git
