@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex seminar"] 1484827023 "seminar.aux" "seminar.bbl" "seminar" 1484828403
+["bibtex seminar"] 1484829444 "seminar.aux" "seminar.bbl" "seminar" 1484829445
   "./fer.bst" 1484585787 26009 c9fe7ac62e814ee4c7bb7b0cdf6bf7a5 ""
   "literatura.bib" 1484823039 1522 3b4daabf9c7641bbc67649fc7100077d ""
-  "seminar.aux" 1484828402 3351 fcabf0bd263a2af07bfa01f6ecc57a70 ""
+  "seminar.aux" 1484829445 3419 2517fac942ccbbc25d17415ee0545499 ""
   "seminar.bcf" 0 -1 0 ""
   (generated)
-  "seminar.bbl"
   "seminar.blg"
-["pdflatex"] 1484828401 "seminar.tex" "seminar.pdf" "seminar" 1484828403
+  "seminar.bbl"
+["pdflatex"] 1484829444 "seminar.tex" "seminar.pdf" "seminar" 1484829445
   "./figures/sparc.png" 1484603310 74297 e5190d8ce83c8cb5e882abb513ea0d4e ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -124,14 +124,14 @@
   "fer.cls" 1484585787 10145 76761193ed91b0ce7a5a85bc13f7191d ""
   "figures/sparc.png" 1484603310 74297 e5190d8ce83c8cb5e882abb513ea0d4e ""
   "implementacija.tex" 1484827180 1166 8704c1b6b6a55bf7df9bd461075b78ff ""
-  "opis.tex" 1484826393 3857 a0f7675373b496f4b06760052f8f0779 ""
-  "seminar.aux" 1484828402 3351 fcabf0bd263a2af07bfa01f6ecc57a70 ""
-  "seminar.bbl" 1484827023 1767 c588d0a3fdcb28165091ebd7698486bd "bibtex seminar"
+  "opis.tex" 1484829440 3877 fccf9acc34a09e67d2a6db8dfa7428f7 ""
+  "seminar.aux" 1484829445 3419 2517fac942ccbbc25d17415ee0545499 ""
+  "seminar.bbl" 1484829444 1767 c588d0a3fdcb28165091ebd7698486bd "bibtex seminar"
   "seminar.tex" 1484828398 912 afb471603b2cd3b2006f4158d03c97b0 ""
-  "seminar.toc" 1484828402 967 27f3ad1a27a05488f2039c1957ed86b3 ""
+  "seminar.toc" 1484829445 967 27f3ad1a27a05488f2039c1957ed86b3 ""
   "zakljucak.tex" 1484828399 644 4f4950b32b3b4937214c15f794a74f29 ""
   (generated)
+  "seminar.toc"
+  "seminar.log"
   "seminar.pdf"
   "seminar.aux"
-  "seminar.log"
-  "seminar.toc"

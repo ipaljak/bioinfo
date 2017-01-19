@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.17)  19 JAN 2017 13:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.17)  19 JAN 2017 13:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,7 +672,7 @@ Here is how much of TeX's memory you used:
  9167 multiletter control sequences out of 15000+600000
  65987 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,8n,40p,1356b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,8n,41p,1356b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.
 enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
 fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
@@ -684,7 +684,7 @@ ive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on seminar.pdf (12 pages, 176065 bytes).
+Output written on seminar.pdf (12 pages, 176091 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream
