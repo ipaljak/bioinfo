@@ -249,9 +249,7 @@ int main(void) {
   
   string ret = reconstruct_genome(kmer_graph);
   for (int i = 0; i < ret.size(); ++i)
-    if (ret[i] == '-')
-      cout << backbone[i];
-    else
+    if (ret[i] != '-')
       cout << ret[i];
 
   cout << endl;
