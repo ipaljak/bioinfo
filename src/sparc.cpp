@@ -71,6 +71,7 @@ map <pair<int, string>, node*> V;
 map <pair<int, string>, edge*> E;
 
 map <node*, pair<node*, edge*>> dad;
+map <int, string> insertions;
 
 void build_backbone(node *root) {
   int it = 0;
@@ -124,9 +125,16 @@ void add_path(int offset) {
   int it = k + read_offset;
   while (it + g <= read.size()) {
 
-    string edge_str = read.substr(it, g);
+    string edge_str = ""; 
+   
+    if (insertions.find(it - read_offset) != insertions.end()) {
+      edge_str = insertions[it - read_offset] + read.substr(it, g);
+    } else {
+      edge_str = read.substr(it, g); 
+    }
+
     string next_kmer = edge_str.substr(g - k, k);
-    
+
     int edge_quality = 0;
     for (int i = 0; i < g; ++i)
       edge_quality += (int) read_quality[it + i];
@@ -147,11 +155,6 @@ void add_path(int offset) {
     for (auto e : curr->edges)
       if (e->s == edge_str)
         link = e;
-
-//    if (link != NULL) {
-//      TRACE(link->s _ nxt->kmer _ link->dest->kmer _ link->dest _ nxt _ link->dest->loc _ nxt->loc);
-//      assert(link->dest == nxt);
-//    }
 
     if (link == NULL) {
       link = new edge(curr->loc, 0, edge_str);
@@ -233,8 +236,16 @@ int main(void) {
 
   int cnt = 0;
   while (cin >> read) {
-    int offset;
+    insertions.clear();
+    int offset, q;
     cin >> read_quality;
+    cin >> q; 
+    for (int i = 0; i < q; ++i) {
+      int a; string b;
+      cin >> a;
+      cin >> b;
+      insertions[a] = b;
+    }
     cin >> offset; 
     --offset;
     add_path(offset); 

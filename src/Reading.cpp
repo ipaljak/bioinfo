@@ -22,6 +22,8 @@ using namespace std;
 //};
 //
 
+map <int, string> insertions;
+
 pair<string, string> cigar2align(string backbone, int backbone_pos, string cigar, string seq, string qual){
 
   string retstr = "";
@@ -60,6 +62,7 @@ pair<string, string> cigar2align(string backbone, int backbone_pos, string cigar
 //          retqual += qual[pos++];
 //          --n;
 //        }
+        insertions[pos] = seq.substr(pos, n);
         pos += n;
         break;
         }
@@ -172,6 +175,7 @@ int main(int argc, char ** argv){
     if (sam.flag != 0)
       continue;
 
+    insertions.clear();
     pair<string, string> p = cigar2align(backbone, sam.pos, sam.cigar, sam.read, sam.quality);
 
     aligned_read = p.first;
@@ -181,6 +185,9 @@ int main(int argc, char ** argv){
       continue;
     out << aligned_read << endl;
     out << aligned_qual << endl;
+    out << (int) insertions.size() << endl;
+    for (map <int, string> :: iterator it = insertions.begin(); it != insertions.end(); ++it)
+      out << it->first << " " << it->second << endl;
     out << sam.pos << endl;
 
 
