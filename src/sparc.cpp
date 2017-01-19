@@ -60,7 +60,7 @@ struct node {
 
 };
 
-int k = 2, g = 3;
+int k = 3, g = 4;
 int skipped = 0;
 
 string backbone, read, read_quality;
@@ -101,8 +101,7 @@ void build_backbone(node *root) {
 }
 
 void add_path(int offset) {
-
-  int read_offset = 0;
+int read_offset = 0;
   while (offset % g != 0) {
     ++offset;
     ++read_offset;
@@ -127,8 +126,8 @@ void add_path(int offset) {
 
     string edge_str = ""; 
    
-    if (insertions.find(it - read_offset) != insertions.end()) {
-      edge_str = insertions[it - read_offset] + read.substr(it, g);
+    if (insertions.find(it) != insertions.end()) {
+      edge_str = insertions[it] + read.substr(it, g);
     } else {
       edge_str = read.substr(it, g); 
     }
@@ -162,7 +161,7 @@ void add_path(int offset) {
       curr->edges.push_back(link);
     }
       
-    link->quality += 5; //edge_quality;
+    link->quality += 5; //link->s.size(); //edge_quality;
 
     curr = nxt;
     it += g;
