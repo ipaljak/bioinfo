@@ -16,11 +16,15 @@ g++ Reading.cpp -o reading
 echo "Compiling sparc."
 g++ -std=c++11 sparc.cpp -o sparc
 
+echo "#1 Running graphmap align to get .sam file"
+../graphmap/bin/Linux-x64/graphmap align -r ../data/"$NAME"_layout.fasta -d ../data/"$NAME"_reads.fastq -o ../data/"$NAME"_mappings.sam
+
 echo "#1 Running readings for $NAME"
 ./reading ../data/"$NAME"_layout.fasta ../data/"$NAME"_mappings.sam ../data/"$NAME"_nas.format
 
 echo "#1 Running sparc."
-../cgmemtime/cgmemtime -o ../reports/"$NAME"_mem_sparc ./sparc < ../data/"$NAME"_nas.format > ../data/"$NAME"_final
+#../cgmemtime/cgmemtime -o ../reports/"$NAME"_mem_sparc ./sparc < ../data/"$NAME"_nas.format > ../data/"$NAME"_final
+./sparc < ../data/"$NAME"_nas.format > ../data/"$NAME"_final
 
 echo "#1 Running dnadiff"
 dnadiff ../data/"$NAME"_reference.fasta ../data/"$NAME"_final

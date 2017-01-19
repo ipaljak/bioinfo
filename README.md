@@ -18,7 +18,11 @@ For complete pipeline run:
 ```
 cd src
 ./eval.sh lambda
+```
+or
+```
 ./eval.sh ecoli
 ```
 
 This project is licensed under the terms of the MIT license.
+
