@@ -19,7 +19,7 @@ U svim rezultatima u nastavku nalazi se \emph{AvgIdentity} polje iz 1-na-1 mapir
 
 \section{Usporedba vlastitog rješenja s referentnim radom}
 
-Tablica \ref{tbl:usporedba}.
+Tablica \ref{tbl:usporedba} prikazuje naše rezultate u usporedbi s referentnim radom. Također, prikazana je mjera preklapanja sekvence iz faze razmještanja s konačnom, referentnom sekvencom.
 
 \begin{table}[]
 \centering
@@ -29,11 +29,15 @@ Tablica \ref{tbl:usporedba}.
   & \multicolumn{1}{l}{lambda} & ecoli \\ \hline
   default & 86.16                       & 88.57 \\
   Sparc   & \textbf{95.41}              & \textbf{98.17} \\
-  SpaCRO  & 87.93                       & 90.73
+  SpaCRO  & 90.97                       & 95.69
 \end{tabular}
 \end{table}
 
-
+Možemo uočiti kako je postignuto značajno poboljšanje sekvence genoma, ali rezultati dobiveni referentnim algoritmom su ipak bolji.
+Razlog nepostizanja visokih rezultata može biti zbog malih razlika u implementaciji algoritma.
+Također, originalni \emph{Sparc} provodi algoritam u nekoliko iteracija.
+Na takav način svakom iteracijom malo raste točnost generirane sekvence (zasićenje je već nakon 3-5 iteracija).
+Mi nismo uočili poboljšanje performansi s povećanjem iteracija.
 
 \section{Memorija i vrijeme izvođenja}
 
