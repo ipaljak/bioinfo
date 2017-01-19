@@ -1,6 +1,18 @@
 \chapter{Evaluacija}
 \label{sec:eval}
 
+\begin{table}[]
+\centering
+\caption{Usporedba vlastitog rješenja (SpaCRO) sa sekvencom iz faze razmještanja (default) i referentnim radom (Sparc).}
+\label{tbl:usporedba}
+\begin{tabular}{l|ll}
+  & \multicolumn{1}{l}{lambda} & ecoli \\ \hline
+  default & 86.16                       & 88.57 \\
+  Sparc   & \textbf{95.41}              & \textbf{98.17} \\
+  SpaCRO  & 90.97                       & 95.69
+\end{tabular}
+\end{table}
+
 Testni podatci dobiveni su na kolegiju\footnote{fer.unizg.hr/predmet/bio}.
 Evaluacija je obavljena na genomima dviju bakterija: escherichia coli te fuge lambda.
 Za svaku bakteriju dostupna su očitanja, genom nakon faze razmještanja te referentni genom s kojim uspoređujemo performanse svoga algoritma.
@@ -21,23 +33,15 @@ U svim rezultatima u nastavku nalazi se \emph{AvgIdentity} polje iz 1-na-1 mapir
 
 Tablica \ref{tbl:usporedba} prikazuje naše rezultate u usporedbi s referentnim radom. Također, prikazana je mjera preklapanja sekvence iz faze razmještanja s konačnom, referentnom sekvencom.
 
-\begin{table}[]
-\centering
-\caption{Usporedba vlastitog rješenja (SpaCRO) s sekvencom iz faze razmještanja (default) i referentnim radom (Sparc).}
-\label{tbl:usporedba}
-\begin{tabular}{l|ll}
-  & \multicolumn{1}{l}{lambda} & ecoli \\ \hline
-  default & 86.16                       & 88.57 \\
-  Sparc   & \textbf{95.41}              & \textbf{98.17} \\
-  SpaCRO  & 90.97                       & 95.69
-\end{tabular}
-\end{table}
-
 Možemo uočiti kako je postignuto značajno poboljšanje sekvence genoma, ali rezultati dobiveni referentnim algoritmom su ipak bolji.
-Razlog nepostizanja visokih rezultata može biti zbog malih razlika u implementaciji algoritma.
+Razlog nepostizanja visokih rezultata je najvjerojatnije zbog malih razlika u implementaciji algoritma.
 Također, originalni \emph{Sparc} provodi algoritam u nekoliko iteracija.
 Na takav način svakom iteracijom malo raste točnost generirane sekvence (zasićenje je već nakon 3-5 iteracija).
 Mi nismo uočili poboljšanje performansi s povećanjem iteracija.
+
+Naš algoritam najbolje rezultate postiže za hiperparametre $k = 3$ i $g = 4$.
+Originalan algoritam bolje radi s manjim vrijednostima.
+Rezultati u tablici \ref{tbl:usporedba} su za $k = 1$ te $g = 1$.
 
 \section{Memorija i vrijeme izvođenja}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.17)  18 JAN 2017 23:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.17)  19 JAN 2017 13:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -625,72 +625,69 @@ Poglavlje 1.
 Poglavlje 2.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 6.
-
-LaTeX Warning: Reference `fig:sparc.png' on page 2 undefined on input line 29.
-
 [2
 
-] <figures/sparc.png, id=21, 525.965pt x 662.475pt>
+] <figures/sparc.png, id=23, 525.965pt x 662.475pt>
 File: figures/sparc.png Graphic file (type png)
  <use figures/sparc.png>
-Package pdftex.def Info: figures/sparc.png used on input line 39.
+Package pdftex.def Info: figures/sparc.png used on input line 30.
 (pdftex.def)             Requested size: 315.58142pt x 397.48807pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 40.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 31.
 )
-(./implementacija.tex [3 <./figures/sparc.png>]
+(./implementacija.tex [3] [4 <./figures/sparc.png>]
 Poglavlje 3.
-) (./evaluacija.tex [4
+) (./evaluacija.tex [5
 
 ]
 Poglavlje 4.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 24.
+               Default added (so using `tbp') on input line 4.
 
-[5
+[6
 
 ]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 44.
+               Default added (so using `tbp') on input line 52.
 
-) (./zakljucak.tex [6]
+) (./zakljucak.tex [7]
 Poglavlje 5.
-) (./seminar.bbl [7
+) (./seminar.bbl [8
 
 ]
 Poglavlje 6.
-) [8
+) [9
 
 ]
 Poglavlje 7.
-[9
+[10
 
-] (./seminar.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] (./seminar.aux) ) 
 Here is how much of TeX's memory you used:
- 5836 strings out of 493089
- 81725 string characters out of 6134841
- 157220 words of memory out of 5000000
- 9165 multiletter control sequences out of 15000+600000
+ 5838 strings out of 493089
+ 81803 string characters out of 6134841
+ 157273 words of memory out of 5000000
+ 9167 multiletter control sequences out of 15000+600000
  65987 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,8n,40p,303b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
-imes/utmri8a.pfb>
-Output written on seminar.pdf (11 pages, 138706 bytes).
+ 43i,8n,40p,1356b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.
+enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/urw/times/utmri8a.pfb>
+Output written on seminar.pdf (12 pages, 176065 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 87 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,6 @@
 /*
  * Our preprocessing.
- * read in backbone, reads and mhap file and
+ * read in backbone, reads and .sam file and
  * output our format file
 */
 

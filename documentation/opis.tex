@@ -4,9 +4,8 @@ Cilj ovog projekta bio je implementirati algoritam Sparc \citep{ye2016sparc} koj
 Sparc je algoritam za konsenzus fazu OLC pristupa, temeljen na \emph{k-mer/de Bruijn} \citep{hannenhalli1996positional} grafovima.
 
 \section{Ulaz u algoritam}
-TODO: seke
-Algoritam koristi izlaz iz faze razmještanja OLC pristupa te sva početna očitanja genoma.
-Očitanja su mapirana na kontigu iz faze razmještanja i pohranjena u datoteku formata .sam, opisanom u nastavku.
+Algoritam koristi izlaz iz faze razmještanja OLC pristupa (u .fasta formatu) te sva početna očitanja genoma (u .fastq formatu).
+Očitanja su mapirana na kontigu iz faze razmještanja i pohranjena u datoteku formata .sam, ukratko opisanom u nastavku.
 
 Kako bi uspješno izgradili graf i proveli algoritam, potrebno je znati gdje se pojedina očitanja mapiraju na osnovnu kontigu.
 Te informacije dobivano iz .sam datoteke koju smo generirali alatom \emph{GraphMap} \citep{sovic2016fast}.
@@ -14,15 +13,10 @@ Nama najvažnije informacije u datoteci jesu:
 \begin{description}
   \item [POS] pozicija na osnovnoj kontizi na kojoj počinje mapiranje pojedinog očitanja
   \item [CIGAR] operacije obavljene nad očitanjem kako bi se dobilo mapiranje (dodavanje, brisanje, pomicanje, itd.)
-  \item SEQ: očitana sekvenca u prvotnom obliku (bez obavljenih CIGAR operacija)
+  \item [SEQ] očitana sekvenca u prvotnom obliku (bez obavljenih CIGAR operacija)
   \item [QUAL] kvaliteta očitanja (iz .fastq datoteke očitanja)
 \end{description}
 
-Važnost navedenih informacija bit će jasnija kasnije.
-Za naše potrebe, spremili smo sve važne informacije u zasebnu datoteku koja se sastoji od osnovne kontige (engl. backbone, layout) u prvoj liniji.
-U nastavku datoteke su očitanja zapisana kroz tri linije.
-Prva linija predstavlja originalno očitanje na koje su primjenjene CIGAR operacije kako bi se dobilo poravnanje s backbone-om.
-U drugoj liniji nalazi se kvaliteta očitanja (QUAL), a u trećoj je pozicija na backbone-u na kojoj počinje mapiranje izmjenjene sekvence.
 
 \section{Opis algoritma}
 Temeljni dio algoritma je izgradnja grafa $k$-mera. Prvi korak u izgradnji spomenutog grafa jest pretvorba referentong genoma \engl{backbone} u sparse lanac $k$-mera kao što je prikazano u $(a)$ dijelu slike. Gustoću grafa korigiramo hiperparametrom $g$, dok je veličina $k$-mera određena parametrom $k$. U čvorovima lanca nalaze se $k$-meri dok se na vezama nalaze dijelovi genoma koji ih povezuju. 
