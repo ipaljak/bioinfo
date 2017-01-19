@@ -25,14 +25,11 @@ Prva linija predstavlja originalno očitanje na koje su primjenjene CIGAR operac
 U drugoj liniji nalazi se kvaliteta očitanja (QUAL), a u trećoj je pozicija na backbone-u na kojoj počinje mapiranje izmjenjene sekvence.
 
 \section{Opis algoritma}
-TODO: paljak
-Najprije se gradi graf direktno iz backbone-a, kako je prikazano na slici \ref{fig:sparc.png}.
-Linearno se prolazi kroz backbone te se u čvorove stavljaju \emph{k-torke (k-meri)}, a bridovi su definirani kao postojeći, ako su sufiks jednog čvora, a prefiks drugoga. 
-Zatim se prolazi kroz mapirana očitanja te se ažuriraju težine u grafu gdje dolazi do preklapanja.
-Dodaju se novi čvorovi i bridovi ako se u očitanju javljaju nove k-torke.
-Konačni korak je pronalazak najtežeg puta u grafu.
-Primjer izgradnje grafa dan je na slici \ref{fig:sparc}.
-TODO: objasni bolje
+Temeljni dio algoritma je izgradnja grafa $k$-mera. Prvi korak u izgradnji spomenutog grafa jest pretvorba referentong genoma \engl{backbone} u sparse lanac $k$-mera kao što je prikazano u $(a)$ dijelu slike. Gustoću grafa korigiramo hiperparametrom $g$, dok je veličina $k$-mera određena parametrom $k$. U čvorovima lanca nalaze se $k$-meri dok se na vezama nalaze dijelovi genoma koji ih povezuju. 
+
+Uz referentni genom imamo i niz očitanja koja se djelomično ili potpuno mapiraju na taj genom, a opis jednog takvog očitanja vidljiv je u prethodnom odlomku. Koristeći očitanu sekvencu [SEQ] i niz operacija nad tom sekvencom [CIGAR] gradimo mapiranje na referentni genom koje u odnosu na njega može imati neke elemente zamijenjene, obrisane ili dodane. Od tog mapiranja gradimo lanac k-mera sličan lancu referentnog genoma uz dodatak što svaki puta kada novoizgrađeni čvor već postoji u stablu k-mera, prethodni čvor ćemo, uz odgovarajući prijelaz, samo spojiti na njega. Ovaj dio algoritma lijepo je vidljiv u (b) i (c) dijelovima slike 2.1.
+
+Primijetimo sada da je graf k-mera usmjeren i acikličan \engl{DAG - Directed Acyclic Graph}, a skup svih lanaca tog grafa nam predstavlja prostor rješenja. Kako bismo izabrali najizgledniji lanac, uz oznaku prijelaza svake veze pamtit ćemo i neku mjeru izglednosti da je baš ta veza dio optimalnog lanca. Ovu mjeru možemo modelirati na razne načine, a u našoj implementaciji je ona jednaka broju očitanja čiji lanci prolaze tom vezom. Izglednost nekog lanca modelirana je sumom težina svih veza tog lanca. Dakle, problem smo sveli na traženje najduljeg puta u DAG-u. Primijetimo da nam usmjerenost i acikličnost dopuštaju nešto efikasniji pronalazak najduljeg puta u grafu. Naime, svaki DAG ima barem jedan topološki poredak čvorova \engl{Topological sort} pa se problem najdužeg puta svodi na jednostavno dinamičko programiranje. Neka $dist_i$ označava najdulji put nekog lanca koji završava u čvoru koji se u topološkom poretku nalazi na poziciji $i$. Tada vrijedi relacija $dist_i = max\{dist_j + w_{ji}\}$ za svaki čvor koji se u topološkom poretku nalazi na indeksu $j$ i direktno je povezan s čvorom na indeksu $i$. Postojanje topološkog poretka nam garantira da ćemo prije $dist_i$ već imati izračunate sve vrijednosti $dist_j$ pa najdulji put nalazimo u složenosti $O(V+E)$.   
 
 \begin{figure}[htb]
 \centering
